@@ -5,7 +5,9 @@ import "bootstrap/dist/js/bootstrap.js"
 // components third part
 import router from './router'
 import axios from 'axios'
-import VueAwesomePaginate from "vue-awesome-paginate";
+import VueAwesomePaginate from "vue-awesome-paginate"
+import moment from 'moment';
+import VueCookies from 'vue-cookies'
 
 // components local
 import { createApp } from 'vue'
@@ -24,10 +26,12 @@ axios.defaults.params["api_key"] = import.meta.env.VITE_API_KEY
 
 const app = createApp(App)
 
+app.config.globalProperties.$moment = moment
 app.mixin(globalFunction)
 app.mixin(globalAction)
 app.use(router)
 app.use(VueAwesomePaginate)
+app.use(VueCookies)
 app.component('Loading',Loading)
 
 app.mount('#app')

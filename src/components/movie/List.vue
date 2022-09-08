@@ -6,7 +6,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-end position-sticky top-0" style="z-index:1000">
-            <div class="search-movie col-lg-4 col-md-6 col-sm-12 py-5 d-flex">
+            <div class="search-movie col-lg-4 col-md-6 col-sm-12 py-5 d-flex mt-5">
                 <form class="d-flex w-100" @submit.prevent="searchMovie()" role="search">
                     <input v-model="filter.query" class="form-control me-2 rounded-3 border-0 bg-light" type="search" placeholder="Search Movie" aria-label="Search">
                     <button class="btn btn-primary rounded-3" type="submit">Search</button>
@@ -14,9 +14,9 @@
             </div>
         </div>
         <div>
-            <div class="d-flex mt-3 mb-5">
-                <div style="width: fit-content" v-for="cat in Object.keys(category)" :key="cat">
-                    <button :class="`border-0 rounded-pill px-3 py-2 mx-3 hover-shadow ${url.includes(cat) ? 'bg-primary text-white' : 'bg-dark-50'}`" @click="changeCategories(cat)">{{category[cat]}}</button>
+            <div class="d-flex mt-3 mb-5 d-inline-flex flex-wrap">
+                <div style="width: fit-content" class="mb-3" v-for="cat in Object.keys(category)" :key="cat">
+                    <button :class="`border-0 rounded-pill px-3 py-2 mx-3 hover-shadow cursor-pointed ${url.includes(cat) ? 'bg-primary text-white' : 'bg-dark-50'}`" @click="changeCategories(cat)">{{category[cat]}}</button>
                 </div>
             </div>
         </div>
@@ -25,11 +25,12 @@
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-12 mb-5" v-for="(data, i) in data" :key="i">
                     <a :href="`/detail/${data.id}`" class="text-decoration-none cursor-pointed">
-                        <div class="hover-shadow h-100 rounded-4 hover-card">
-                            <div class="card border-0 bg-light h-100 rounded-4">
+                        <div class="hover-shadow h-100 rounded-4 hover-card mx-auto" style="max-width: 200px">
+                            <div class="card border-0 bg-light h-100 rounded-4 mx-auto">
                                 <img :src="getUrlImage(data.poster_path, 'small')" class="card-img-top rounded-4" :alt="data.title">
                                 <div class="card-body h-100">
                                     <h6 class="card-title fw-semibold text-secondary">{{data.title}}</h6>
+                                    <h6 class="card-title text-secondary">{{$moment(data.release_date).format("yyyy MMM Do")}}</h6>
                                 </div>
                             </div>
                         </div>

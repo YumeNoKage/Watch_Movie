@@ -6,7 +6,7 @@ const globalFunction = {
             } else if (size == 'original'){
                 return import.meta.env.VITE_API_IMAGE_ORIGINAL + url
             }
-       }
+        },
     }
 }
 
